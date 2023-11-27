@@ -1,0 +1,25 @@
+# Component Hierarchy
+
+- App
+  - Sidebar
+  - Main Frame
+    - Dashboard View
+      - Date Picker
+      - Selected Day Details Display
+      - Vizualizer Display
+        - List Tab
+        - Calendar Tab
+        - Chart Tab
+    - Config View
+      - Budget View
+      - Configuration Display
+        - Cashflow Tab
+          - Recurring Transaction List
+            - Recurring Transaction List Item
+          - Add Recurring Transaction Button
+        - Accounts Tab
+          - Account List
+            - Account List Item
+          - Add Account Button
+        - Envelopes Tab
+    - New Account Modal
