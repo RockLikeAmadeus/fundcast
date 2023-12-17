@@ -4,10 +4,15 @@ import { act } from "react-dom/test-utils";
 import { AccountListItem } from "../src/config-view/accounts/AccountList";
 
 describe("AccountListItem", () => {
+  //#region setup
   let container;
+  const account = {
+    accountName: "Chase Checking",
+  };
   beforeEach(() => {
     container = document.createElement("div");
   });
+  //#endregion
 
   const render = (component) => {
     document.body.replaceChildren(container);
@@ -15,9 +20,6 @@ describe("AccountListItem", () => {
   };
 
   it("renders the account name", () => {
-    const account = {
-      accountName: "Chase Checking",
-    };
     render(<AccountListItem account={account} />);
     expect(document.body.textContent).toContain("Chase Checking");
   });

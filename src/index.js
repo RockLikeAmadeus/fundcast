@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { MyRootComponent } from "./MyRootComponent";
+import { AccountListItem } from "./config-view/accounts/AccountList";
 import { mySampleData } from "./sampleData";
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <MyRootComponent data={mySampleData} />
+  <AccountListItem account={mySampleData} />
 );
