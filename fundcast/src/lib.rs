@@ -1,5 +1,5 @@
 // Module declarations
-mod currency;
+mod money;
 
 
 pub struct Wallet {
