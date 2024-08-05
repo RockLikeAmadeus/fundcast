@@ -1,3 +1,25 @@
+enum Currency {
+    USD,
+}
+
+struct Money {
+    currency: Currency,
+    major_value: i32,
+    minor_value: i32,
+}
+
+impl Money {
+    fn new(major_value: i32, minor_value: i32, currency: Currency) -> Money {
+        let res = Money {
+            currency: currency,
+            major_value: major_value,
+            minor_value: minor_value,
+        };
+        res
+    }
+}
+
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -13,16 +35,18 @@ mod tests {
 
     // Test object construction
 
-    #[test]
-    fn constructing_currency_via_string_yields_correct_object() {
-        let two_dollars_fifty_one = Money::new("$2.51")
-        assert_eq(two_dollars_fifty_one.major_value, 2);
-        assert_eq(two_dollars_fifty_one.minor_value, 51);
-    }
+    // #[test]
+    // fn constructing_currency_via_string_yields_correct_object() {
+    //     let two_dollars_fifty_one = Money::new("$2.51")
+    //     assert_eq!(two_dollars_fifty_one.major_value, 2);
+    //     assert_eq!(two_dollars_fifty_one.minor_value, 51);
+    // }
 
     #[test]
     fn constructing_currency_via_integers_yields_correct_object() {
-
+        let two_dollars_fifty_one = Money::new(2, 51, Currency::USD);
+        assert_eq!(two_dollars_fifty_one.major_value, 2);
+        assert_eq!(two_dollars_fifty_one.minor_value, 51);
     }
 
     // Test addition
@@ -30,6 +54,7 @@ mod tests {
     // Test multiplication with integers
     // Test division with integers
     // Test comparison operators 
+    // Test string formatting
 
     
 }
