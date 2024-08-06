@@ -1,9 +1,9 @@
 //use currencies::currency::*;
 
-pub enum Currency {
+/*pub enum Currency {
     NONE,
     USD,
-}
+}*/
 
 pub struct Money {
     value: i64
@@ -18,7 +18,7 @@ impl Money {
         res
     }
 
-    pub fn from_str(_amount: &str) -> Money {
+    pub fn _from_str(_amount: &str) -> Money {
         let res = Money {
             value: 0
         };
@@ -27,18 +27,18 @@ impl Money {
 
     // Methods
     pub fn value_as_i64(&self) -> i64 {
-        0
+        self.value
     }
 
     pub fn major_part(&self) -> i64 {
-        0
+        &self.value/100
     }
 
     pub fn minor_part(&self) -> i8 {
-        0
+        (&self.value%100).try_into().unwrap()
     }
 
-    pub fn as_string(&self) -> &'static str {
+    pub fn _as_string(&self) -> &'static str {
         ""
     }
 }
@@ -53,6 +53,7 @@ mod tests {
     #[test]
     fn constructing_dollar_amount_via_integer_yields_correct_object() {
         let cash: Money = Money::new(251);
+        assert_eq!(cash.value_as_i64(), 251);
         assert_eq!(cash.major_part(), 2);
         assert_eq!(cash.minor_part(), 51);
     }
@@ -66,15 +67,16 @@ mod tests {
 
     // Test cash! macro for simple construction
 
-    // Test addition
-    /*#[test]
+    /* Test addition */
+    #[test]
     fn adding_currency_values_gives_expected_result() {
-        let two_dollars_fifty_one = Dollars::new(2, 51);
-        let five_dollars_thirty_three = Dollars::new(5, 33);
-        // Probably use the *currencies* rust crate.
+        let two_dollars_fifty_one = Money::new(251);
+        let five_dollars_thirty_three = Money::new(533);
         let sum = two_dollars_fifty_one + five_dollars_thirty_three;
-        assert_eq(sum, Dollars::new(7, 84));
-    }*/
+        assert_eq!(sum, Money::new(784));
+    }
+
+
     // Test subtraction
     // Test multiplication with integers
     // Test division with integers

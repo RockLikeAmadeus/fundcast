@@ -1,14 +1,14 @@
 // Module declarations
-mod money;
+pub mod money;
 
 
 pub struct Wallet {
-    accounts: Vec<Account>,
+    _accounts: Vec<Account>,
 }
 
 pub struct Account {
-    name: String,
-    amount: String, // this needs to be an instance of a wrapper for currency
+    _name: String,
+    _amount: String, // this needs to be an instance of a wrapper for currency
 }
 
 pub fn add(left: usize, right: usize) -> usize {
