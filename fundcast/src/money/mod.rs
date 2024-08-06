@@ -49,6 +49,14 @@ impl ops::Add<Money> for Money {
     }
 }
 
+impl ops::Sub<Money> for Money {
+    type Output = Money;
+
+    fn sub(self, rhs: Money) -> Money {
+        Money::new(self.value - rhs.value)
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -81,7 +89,15 @@ mod tests {
         assert_eq!(sum, Money::new(784));
     }
 
-    // Test subtraction
+    /* Test subtraction */
+    #[test]
+    fn subtracting_currency_values_gives_expected_result() {
+        let two_dollars_fifty_one = Money::new(251);
+        let five_dollars_thirty_three = Money::new(533);
+        let difference = five_dollars_thirty_three - two_dollars_fifty_one;
+        assert_eq!(difference, Money::new(282));
+    }
+
     // Test multiplication with integers
     // Test division with integers
     // Test comparison operators
