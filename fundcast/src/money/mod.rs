@@ -1,10 +1,12 @@
-//use currencies::currency::*;
+use std::ops;
 
 /*pub enum Currency {
     NONE,
     USD,
 }*/
 
+#[derive(Debug)]
+#[derive(PartialEq)]
 pub struct Money {
     value: i64,
 }
@@ -36,6 +38,14 @@ impl Money {
 
     pub fn _as_string(&self) -> &'static str {
         ""
+    }
+}
+
+impl ops::Add<Money> for Money {
+    type Output = Money;
+
+    fn add(self, rhs: Money) -> Money {
+        Money::new(self.value + rhs.value)
     }
 }
 
