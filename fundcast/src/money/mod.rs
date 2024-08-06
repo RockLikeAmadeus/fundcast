@@ -65,6 +65,14 @@ impl ops::Mul<i64> for Money {
     }
 }
 
+impl ops::Div<i64> for Money {
+    type Output = Money;
+
+    fn div(self, rhs: i64) -> Money {
+        Money::new(self.value / rhs)
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -116,13 +124,28 @@ mod tests {
 
     /* Test multiplication with integers */
     #[test]
-    fn multiplying_currency_by_integers_gives_expected_result() {
+    fn multiplying_currency_by_integer_gives_expected_result() {
         let two_dollars_fifty_one = Money::new(251);
         let product = two_dollars_fifty_one * 99;
         assert_eq!(product, Money::new(24849));
     }
 
     /* Test division with integers */
+
+    #[test]
+    fn dividing_currency_by_integer_gives_expected_exact_result() {
+        let two_dollars_fifty_two = Money::new(252);
+        let result = two_dollars_fifty_two / 2;
+        assert_eq!(result, Money::new(126));
+    }
+
+    // #[test]
+    // fn dividing_currency_by_integer_truncates() {
+    //     let two_dollars_fifty_one = Money::new(251);
+    //     let product = two_dollars_fifty_one * 99;
+    //     assert_eq!(product, Money::new(24849));
+    // }
+
     /* Test comparison operators */
     /* Test string formatting */
 }
