@@ -6,22 +6,18 @@
 }*/
 
 pub struct Money {
-    value: i64
+    value: i64,
 }
 
 impl Money {
     // Constructors
     pub fn new(total_value: i64) -> Money {
-        let res = Money {
-            value: total_value
-        };
+        let res = Money { value: total_value };
         res
     }
 
     pub fn _from_str(_amount: &str) -> Money {
-        let res = Money {
-            value: 0
-        };
+        let res = Money { value: 0 };
         res
     }
 
@@ -31,18 +27,17 @@ impl Money {
     }
 
     pub fn major_part(&self) -> i64 {
-        &self.value/100
+        &self.value / 100
     }
 
     pub fn minor_part(&self) -> i8 {
-        (&self.value%100).try_into().unwrap()
+        (&self.value % 100).try_into().unwrap()
     }
 
     pub fn _as_string(&self) -> &'static str {
         ""
     }
 }
-
 
 #[cfg(test)]
 mod tests {
@@ -76,12 +71,9 @@ mod tests {
         assert_eq!(sum, Money::new(784));
     }
 
-
     // Test subtraction
     // Test multiplication with integers
     // Test division with integers
-    // Test comparison operators 
+    // Test comparison operators
     // Test string formatting
-
-    
 }

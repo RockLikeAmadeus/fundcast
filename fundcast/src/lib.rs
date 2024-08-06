@@ -1,7 +1,6 @@
 // Module declarations
 pub mod money;
 
-
 pub struct Wallet {
     _accounts: Vec<Account>,
 }
