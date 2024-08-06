@@ -5,39 +5,41 @@ pub enum Currency {
     USD,
 }
 
-pub trait Money {
-    // constructors
-    fn new(major_value: i32, minor_value: i32, currency: Currency) -> Self;
-    fn from_str(_amount: &str) -> Self;
-
-    // fields
-    fn currency() -> Currency;
-    fn major_value() -> i32;
-    fn minor_value() -> i32;
-    fn as_string() -> &'static str;
+pub struct Money {
+    value: i64
 }
 
-struct CurrencyWrapper {
-    // amount: Amount;
-}
-
-impl CurrencyWrapper {
-    fn new(major_value: i32, minor_value: i32, currency: Currency) -> CurrencyWrapper {
-        let res = CurrencyWrapper {
-            // currency: currency,
-            // major_value: major_value,
-            // minor_value: minor_value,
+impl Money {
+    // Constructors
+    pub fn new(total_value: i64) -> Money {
+        let res = Money {
+            value: total_value
         };
         res
     }
 
-    fn from_str(_amount: &str) -> CurrencyWrapper {
-        let res = CurrencyWrapper {
-            // currency: Currency::NONE,
-            // major_value: 0,
-            // minor_value: 0,
+    pub fn from_str(_amount: &str) -> Money {
+        let res = Money {
+            value: 0
         };
         res
+    }
+
+    // Methods
+    pub fn value_as_i64(&self) -> i64 {
+        0
+    }
+
+    pub fn major_part(&self) -> i64 {
+        0
+    }
+
+    pub fn minor_part(&self) -> i8 {
+        0
+    }
+
+    pub fn as_string(&self) -> &'static str {
+        ""
     }
 }
 
@@ -49,18 +51,20 @@ mod tests {
     /* Test object construction*/
 
     #[test]
-    fn constructing_dollar_amount_via_integers_yields_correct_object() {
-        let cash: Money = CurrenciesWrapper::new(2, 51, Currency::USD);
-        assert_eq!(cash.major_value, 2);
-        assert_eq!(cash.minor_value, 51);
+    fn constructing_dollar_amount_via_integer_yields_correct_object() {
+        let cash: Money = Money::new(251);
+        assert_eq!(cash.major_part(), 2);
+        assert_eq!(cash.minor_part(), 51);
     }
 
-    #[test]
-    fn constructing_dollar_amount_via_string_yields_correct_object() {
-        let cash = Money::from_str("$2.51");
-        assert_eq!(cash.major_value, 2);
-        assert_eq!(cash.minor_value, 51);
-    }
+    // #[test] // Implement later!!
+    // fn constructing_dollar_amount_via_string_yields_correct_object() {
+    //     let cash = Money::from_str("$2.51");
+    //     assert_eq!(cash.major_value, 2);
+    //     assert_eq!(cash.minor_value, 51);
+    // }
+
+    // Test cash! macro for simple construction
 
     // Test addition
     /*#[test]
