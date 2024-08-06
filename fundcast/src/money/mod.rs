@@ -139,12 +139,12 @@ mod tests {
         assert_eq!(result, Money::new(126));
     }
 
-    // #[test]
-    // fn dividing_currency_by_integer_truncates() {
-    //     let two_dollars_fifty_one = Money::new(251);
-    //     let product = two_dollars_fifty_one * 99;
-    //     assert_eq!(product, Money::new(24849));
-    // }
+    #[test]
+    fn dividing_currency_by_integer_truncates() {
+        let two_dollars_fifty_two = Money::new(252);
+        let result = two_dollars_fifty_two / 5;
+        assert_eq!(result, Money::new(50));
+    }
 
     /* Test comparison operators */
     /* Test string formatting */
