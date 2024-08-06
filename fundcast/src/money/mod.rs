@@ -98,6 +98,14 @@ mod tests {
         assert_eq!(difference, Money::new(282));
     }
 
+    #[test]
+    fn subtracting_currency_values_gives_expected_negative_result() {
+        let two_dollars_fifty_one = Money::new(251);
+        let five_dollars_thirty_three = Money::new(533);
+        let difference = two_dollars_fifty_one - five_dollars_thirty_three;
+        assert_eq!(difference, Money::new(-282));
+    }
+
     // Test multiplication with integers
     // Test division with integers
     // Test comparison operators
