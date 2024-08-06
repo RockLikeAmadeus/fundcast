@@ -57,6 +57,14 @@ impl ops::Sub<Money> for Money {
     }
 }
 
+impl ops::Mul<i64> for Money {
+    type Output = Money;
+
+    fn mul(self, rhs: i64) -> Money {
+        Money::new(self.value * rhs)
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -106,8 +114,15 @@ mod tests {
         assert_eq!(difference, Money::new(-282));
     }
 
-    // Test multiplication with integers
-    // Test division with integers
-    // Test comparison operators
-    // Test string formatting
+    /* Test multiplication with integers */
+    #[test]
+    fn multiplying_currency_by_integers_gives_expected_result() {
+        let two_dollars_fifty_one = Money::new(251);
+        let product = two_dollars_fifty_one * 99;
+        assert_eq!(product, Money::new(24849));
+    }
+
+    /* Test division with integers */
+    /* Test comparison operators */
+    /* Test string formatting */
 }
