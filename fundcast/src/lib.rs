@@ -1,4 +1,4 @@
-use std::collections::*;
+//use std::collections::*;
 use money::Money;
 
 // Module declarations
@@ -13,30 +13,34 @@ impl Wallet {
     fn total_balance(&self) -> Money {
         let mut sum: Money = Money::new(0);
         for account in &self.accounts {
-            sum += account.balance;
+            sum += *account.balance();
         }
         sum
     }
 }
 
 pub struct Account {
-    name: String,
+    pub name: String,
     balance: Money,
 }
 
 impl Account {
-    fn new(name: &str, balance: Money) -> Account {
+    pub fn new(name: &str, balance: Money) -> Account {
         Account {
             name: name.to_string(),
             balance: balance,
         }
     }
 
-    fn from_i64(name: &str, balance: i64) -> Account {
+    pub fn from_i64(name: &str, balance: i64) -> Account {
         Account {
             name: name.to_string(),
             balance: Money::new(balance),
         }
+    }
+
+    pub fn balance(&self) -> &Money {
+        &self.balance
     }
 }
 
@@ -60,15 +64,15 @@ mod tests {
     fn validate_account_constructor() {
         let account = Account::new("Chase Checking", Money::new(1_337_13));
         assert_eq!(account.name, "Chase Checking");
-        assert_eq!(account.balance.major_part(), 1_337);
-        assert_eq!(account.balance.minor_part(), 13);
+        assert_eq!(account.balance().major_part(), 1_337);
+        assert_eq!(account.balance().minor_part(), 13);
     }
 
     #[test]
     fn validate_account_from_i64() {
         let account = Account::from_i64("Chase Checking", 1_337_13);
         assert_eq!(account.name, "Chase Checking");
-        assert_eq!(account.balance.major_part(), 1_337);
-        assert_eq!(account.balance.minor_part(), 13);
+        assert_eq!(account.balance().major_part(), 1_337);
+        assert_eq!(account.balance().minor_part(), 13);
     }
 }
