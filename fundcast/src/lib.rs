@@ -1,10 +1,22 @@
+use std::collections::*;
+use money::Money;
+
 // Module declarations
 pub mod money;
 
-use money::Money;
 
 pub struct Wallet {
     accounts: Vec<Account>,
+}
+
+impl Wallet {
+    fn total_balance(&self) -> Money {
+        let mut sum: Money = Money::new(0);
+        for account in &self.accounts {
+            sum += account.balance;
+        }
+        sum
+    }
 }
 
 pub struct Account {
@@ -35,14 +47,13 @@ mod tests {
     #[test]
     fn total_balance_equals_sum_of_account_balances() {
         let wallet = Wallet {
-            accounts: Vec!(
+            accounts: vec!(
                 Account::from_i64("Acc 1", 12345),
                 Account::from_i64("Acc 2", 67890),
                 Account::from_i64("Acc 3", 12)
             ),
         };
-        assert_eq!(wallet::total_balance().major_part(), Money::new(802));
-        assert_eq!(wallet::total_balance().minor_part(), Money::new(47));
+        assert_eq!(wallet.total_balance(), Money::new(80247));
     }
 
     #[test]

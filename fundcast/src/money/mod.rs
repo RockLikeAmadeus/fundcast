@@ -5,7 +5,7 @@ use std::ops;
     USD,
 }*/
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Copy, Clone, PartialEq)]
 pub struct Money {
     value: i64,
 }
@@ -48,11 +48,27 @@ impl ops::Add<Money> for Money {
     }
 }
 
+impl ops::AddAssign<Money> for Money {
+    fn add_assign(&mut self, other: Self) {
+        *self = Self {
+            value: self.value + other.value
+        }
+    }
+}
+
 impl ops::Sub<Money> for Money {
     type Output = Money;
 
     fn sub(self, rhs: Money) -> Money {
         Money::new(self.value - rhs.value)
+    }
+}
+
+impl ops::SubAssign<Money> for Money {
+    fn sub_assign(&mut self, other: Self) {
+        *self = Self {
+            value: self.value - other.value
+        }
     }
 }
 
@@ -104,6 +120,14 @@ mod tests {
         assert_eq!(sum, Money::new(784));
     }
 
+    #[test]
+    fn add_assigning_currency_values_gives_expected_result() {
+        let mut cash1 = Money::new(251);
+        let cash2 = Money::new(533);
+        cash1 += cash2;
+        assert_eq!(cash1, Money::new(784));
+    }
+
     /* Test subtraction */
     #[test]
     fn subtracting_currency_values_gives_expected_result() {
@@ -111,6 +135,14 @@ mod tests {
         let five_dollars_thirty_three = Money::new(533);
         let difference = five_dollars_thirty_three - two_dollars_fifty_one;
         assert_eq!(difference, Money::new(282));
+    }
+
+    #[test]
+    fn sub_assigning_currency_values_gives_expected_result() {
+        let mut cash1 = Money::new(251);
+        let cash2 = Money::new(533);
+        cash1 -= cash2;
+        assert_eq!(cash1, Money::new(-282));
     }
 
     #[test]
