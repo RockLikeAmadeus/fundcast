@@ -51,7 +51,7 @@ impl ops::Add<Money> for Money {
 impl ops::AddAssign<Money> for Money {
     fn add_assign(&mut self, other: Self) {
         *self = Self {
-            value: self.value + other.value
+            value: self.value + other.value,
         }
     }
 }
@@ -67,7 +67,7 @@ impl ops::Sub<Money> for Money {
 impl ops::SubAssign<Money> for Money {
     fn sub_assign(&mut self, other: Self) {
         *self = Self {
-            value: self.value - other.value
+            value: self.value - other.value,
         }
     }
 }

@@ -4,7 +4,6 @@ use money::Money;
 // Module declarations
 pub mod money;
 
-
 pub struct Wallet {
     accounts: Vec<Account>,
 }
@@ -51,11 +50,11 @@ mod tests {
     #[test]
     fn total_balance_equals_sum_of_account_balances() {
         let wallet = Wallet {
-            accounts: vec!(
+            accounts: vec![
                 Account::from_i64("Acc 1", 12345),
                 Account::from_i64("Acc 2", 67890),
-                Account::from_i64("Acc 3", 12)
-            ),
+                Account::from_i64("Acc 3", 12),
+            ],
         };
         assert_eq!(wallet.total_balance(), Money::new(80247));
     }
