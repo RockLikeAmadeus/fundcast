@@ -5,8 +5,7 @@ use std::ops;
     USD,
 }*/
 
-#[derive(Debug)]
-#[derive(PartialEq)]
+#[derive(Debug, PartialEq)]
 pub struct Money {
     value: i64,
 }
