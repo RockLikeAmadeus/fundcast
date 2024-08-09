@@ -1,8 +1,16 @@
 //use std::collections::*;
 use money::Money;
 
-// Module declarations
+/* Module declarations */
 pub mod money;
+pub mod data_store;
+// pub mod wallet_repo;
+
+fn get_wallet() {
+    
+}
+
+/* Models (move into module) */
 
 pub struct Wallet {
     accounts: Vec<Account>,
