@@ -1,7 +1,9 @@
-package money
+package money_test
 
 import (
 	"testing"
+
+	. "github.com/RockLikeAmadeus/fundcast/app/money"
 )
 
 func TestMoney(t *testing.T) {
